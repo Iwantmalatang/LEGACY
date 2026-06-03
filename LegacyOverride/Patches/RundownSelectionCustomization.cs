@@ -25,15 +25,17 @@ namespace LEGACY.LegacyOverride.Patches
 
             switch (db.RundownIdsToLoad.Count)
             {
-                case 2:
+                case 3:
                     /*
                         [Warning:LEGACYCore] (-476.0, 45.0, 0.0)
                         [Warning:LEGACYCore] (317.0, -104.0, 0.0)
                      */
-                    p.m_rundownSelectionPositions[0] = new(-320.0f, 75f, 0f);
-                    p.m_rundownSelectionPositions[1] = new(320.0f, 0f, 0f);
+                    p.m_rundownSelectionPositions[0] = new(-430f, 180f, 0f);
+                    p.m_rundownSelectionPositions[1] = new(0f, 100f, 0f);
+                    p.m_rundownSelectionPositions[2] = new(420f, 100f, 0f);
 
-                    var oriPos = Vector3.zero;
+
+					var oriPos = Vector3.zero;
                     for (int i = db.RundownIdsToLoad.Count; i < p.m_rundownSelectionPositions.Count; i++)
                     {
                         oriPos = p.m_rundownSelectionPositions[i];
@@ -44,6 +46,7 @@ namespace LEGACY.LegacyOverride.Patches
                     p.m_textRundownHeaderTop.transform.position = new(oriPos.x, -350f, oriPos.z); // CLCTR multithread text
                     break;
                 default: break;
+                
             }
         }
 
@@ -55,23 +58,29 @@ namespace LEGACY.LegacyOverride.Patches
 
             switch (db.RundownIdsToLoad.Count)
             {
-                case 2:
+                case 3:
                     var r1 = p.m_rundownSelections[0];
                     var r2 = p.m_rundownSelections[1];
+                    var r3 = p.m_rundownSelections[2];
 
-                    r1.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f) * 1.625f;
-                    r2.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f) * 1.5f;
-                    r1.m_rundownText.transform.localRotation = r2.m_rundownText.transform.localRotation = Quaternion.AngleAxis(45.0f, Vector3.right);
+                    r1.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f) * 1.8f;
+                    r2.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f) * 1.0f;
+                    r3.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f) * 2.05f;
+					r1.m_rundownText.transform.localRotation = r3.m_rundownText.transform.localRotation = Quaternion.AngleAxis(45.0f, Vector3.right) * Quaternion.AngleAxis(4f, Vector3.forward);
+                    r2.m_rundownText.transform.localRotation = Quaternion.AngleAxis(45.0f, Vector3.right) * Quaternion.AngleAxis(-1f, Vector3.forward);
 
                     r1.m_rundownText.transform.localPosition = Vector3.up * 60f + Vector3.right * 20f;
-                    r2.m_rundownText.transform.localPosition = Vector3.up * 85f + Vector3.left * 25f;
+                    r2.m_rundownText.transform.localPosition = Vector3.up * 85f;
+					r3.m_rundownText.transform.localPosition = Vector3.up * 60f + Vector3.left * 30f;
 
-                    r1.transform.localRotation = r2.transform.localRotation = Quaternion.AngleAxis(-45.0f, Vector3.right);
+					r1.transform.localRotation = r3.transform.localRotation = Quaternion.AngleAxis(-45.0f, Vector3.right) * Quaternion.AngleAxis(10.0f, Vector3.up);
+                    r2.transform.localRotation = Quaternion.AngleAxis(-45.0f, Vector3.right);
 
-                    r1.m_rundownText.text = r1TitleID != 0 ? Text.Get(r1TitleID) : "<size=50%><color=#00ae9d>[ LEGACY ]</color></size>";
-                    r2.m_rundownText.text = r2TitleID != 0 ? Text.Get(r2TitleID) : "<size=80%><color=#009ad6>[ L-OMNI ]</color></size>";
+                    r1.m_rundownText.text = r1TitleID != 0 ? Text.Get(r1TitleID) : "<size=50%><color=#00ae9d>L</color></size>";
+                    r3.m_rundownText.text = r2TitleID != 0 ? Text.Get(r2TitleID) : "<size=80%><color=#009ad6>R</color></size>";
+                    r2.m_rundownText.text = r3TitleID != 0 ? Text.Get(r3TitleID) : "<size=80%><color=#009ad6>M</color></size>";
 
-                    void DestroyAltText(CM_RundownSelection s)
+					void DestroyAltText(CM_RundownSelection s)
                     {
                         if (s.m_altText != null)
                         {
@@ -82,7 +91,8 @@ namespace LEGACY.LegacyOverride.Patches
 
                     DestroyAltText(r1);
                     DestroyAltText(r2);
-                    break;
+                    DestroyAltText(r3);
+					break;
                 default: break;
             }
         }
@@ -97,23 +107,30 @@ namespace LEGACY.LegacyOverride.Patches
 
         private static uint r1TitleID = 0;
         private static uint r2TitleID = 0;
+        private static uint r3TitleID = 0;
 
-        private static void InitTitle()
+		private static void InitTitle()
         {
             if (r1TitleID != 0) return;
 
-            var db = GameDataBlockBase<TextDataBlock>.GetBlock("LEGACY_Title");
-            if(db != null)
+            var db = GameDataBlockBase<TextDataBlock>.GetBlock("L_Title");
+            if (db != null)
             {
                 r1TitleID = db.persistentID;
             }
 
-            db = GameDataBlockBase<TextDataBlock>.GetBlock("LEGACY-Omni_Title");
+            db = GameDataBlockBase<TextDataBlock>.GetBlock("R_Title");
             if (db != null)
             {
                 r2TitleID = db.persistentID;
             }
-        }
+
+            db = GameDataBlockBase<TextDataBlock>.GetBlock("M_Title");
+            if (db != null)
+            {
+                r3TitleID = db.persistentID;
+            }
+		}
 
         private static IEnumerator reverseReveal(CM_PageRundown_New p, bool hosting, Transform guixSurfaceTransform)
         {

@@ -35,6 +35,7 @@ namespace LEGACY.LegacyOverride
             LevelSpawnedFogBeaconManager.Current.Init();
             SuccessPageCustomizationManager.Current.Init();
             ResourceStationManager.Current.Init();
+            //
         }
     }
 }

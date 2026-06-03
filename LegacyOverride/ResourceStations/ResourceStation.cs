@@ -73,8 +73,8 @@ namespace LEGACY.LegacyOverride.ResourceStations
         {
             string button = Text.Format(827U, InputMapper.GetBindingName(Interact.InputAction));
             var additionalInfoTextDB = GameDataBlockBase<TextDataBlock>.GetBlock("InGame.OnAdditionalInteractionText.ResourceStation");
-            string additionalInfo = additionalInfoTextDB == null ? "TO REPLENISH" : Text.Get(additionalInfoTextDB.persistentID);
-            string remainingUseTimeText = HasUnlimitedUseTime ? string.Empty : $"({State.RemainingUseTime}/{def.AllowedUseTimePerCooldown})";
+            string additionalInfo = additionalInfoTextDB == null ? " TO REPLENISH" : Text.Get(additionalInfoTextDB.persistentID);
+            string remainingUseTimeText = HasUnlimitedUseTime ? string.Empty : $"({State.RemainingUseTime}/{def.AllowedUseTimePerCooldown}) per {def.CooldownTime}s";
             GuiManager.InteractionLayer.SetInteractPrompt(Interact.InteractionMessage, $"{button}{additionalInfo}{remainingUseTimeText}", ePUIMessageStyle.Default);
         }
 

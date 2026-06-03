@@ -5,6 +5,7 @@ using AK;
 using UnityEngine;
 using LEGACY.Utils;
 using System.Collections.Generic;
+using Localization;
 
 namespace LEGACY.Reactor
 {
@@ -115,17 +116,23 @@ namespace LEGACY.Reactor
         
         static Patch_ReactorStartup_OverwriteGUIBehaviour()
         {
-            var block = LevelLayoutDataBlock.GetBlock("Legacy_L3E2_L1");
+            var block = LevelLayoutDataBlock.GetBlock("2026_F.04_Layout");
             if(block != null)
             {
                 ForceDisableLevels.Add(block.persistentID);
             }
 
-            block = LevelLayoutDataBlock.GetBlock("Legacy_L1E1_L1");
+            block = LevelLayoutDataBlock.GetBlock("F.08_Layout");
             if(block != null)
             {
                ForceDisableLevels.Add(block.persistentID);
             }
-        }
+
+			block = LevelLayoutDataBlock.GetBlock("R6E1_Layout");
+			if (block != null)
+			{
+				ForceDisableLevels.Add(block.persistentID);
+			}
+		}
     }
 }

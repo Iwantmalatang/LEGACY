@@ -132,8 +132,6 @@ namespace LEGACY.ExtraEvents
                 case 41:
                 case 56:
                 case 54:
-                case 200:
-                case 201:
                     mode = AgentMode.Scout; break;
             }
             // SPAWN ON POSITION
@@ -154,8 +152,8 @@ namespace LEGACY.ExtraEvents
                     yield break;
                 }
 
-                UnityEngine.Quaternion rotation = UnityEngine.Quaternion.LookRotation(new UnityEngine.Vector3(EnemyGroup.s_randomRot2D.x, 0.0f, EnemyGroup.s_randomRot2D.y), UnityEngine.Vector3.up);
-                var node = zone.m_areas[areaIndex].m_courseNode;
+				UnityEngine.Quaternion rotation = UnityEngine.Quaternion.LookRotation(new UnityEngine.Vector3(EnemyGroup.s_randomRot2D.x, 0.0f, EnemyGroup.s_randomRot2D.y), UnityEngine.Vector3.up);
+				var node = zone.m_areas[areaIndex].m_courseNode;
                 if (mode != AgentMode.Scout)
                 {
                     EnemyAllocator.Current.SpawnEnemy(e.EnemyID, node, AgentMode.Hibernate, e.Position, rotation);
@@ -278,17 +276,7 @@ namespace LEGACY.ExtraEvents
                     groupType = (eEnemyGroupType)3;
                     difficulty = (eEnemyRoleDifficulty)3; 
                     break;
-
-                case 200: // scout no tag
-                    groupType = (eEnemyGroupType)3;
-                    difficulty = (eEnemyRoleDifficulty)6; 
-                    break;
-
-                case 201: // scout shadow no tag
-                    groupType = (eEnemyGroupType)3;
-                    difficulty = (eEnemyRoleDifficulty)13; 
-                    break;
-
+               
                 case 56: // scout nightmare
                     groupType = (eEnemyGroupType)3;
                     difficulty = (eEnemyRoleDifficulty)16;
@@ -298,6 +286,7 @@ namespace LEGACY.ExtraEvents
                     groupType = (eEnemyGroupType)3;
                     difficulty = (eEnemyRoleDifficulty)15;
                     break;
+
                 default:
                     LegacyLogger.Error($"Undefined scout, enemy ID {scoutID}");
                     break;

@@ -11,7 +11,7 @@
     -->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Platforms>x64</Platforms>
-    <OutputPath>I:\SteamLibrary\steamapps\common\GTFO\BepInEx\plugins</OutputPath>
+    <OutputPath>D:\Windows\GTFO\plugins\LEGACY-PE\output</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -89,6 +89,7 @@
     <Compile Include="LegacyOverride\Patches\ExpeditionSuccessPage.cs" />
     <Compile Include="LegacyOverride\Patches\GUIManager_RestartPage.cs" />
     <Compile Include="LegacyOverride\Patches\LevelSpawnFogBeacon_BugFix.cs" />
+    <Compile Include="LegacyOverride\Patches\PouncerArenaPosition_Fix.cs" />
     <Compile Include="LegacyOverride\Patches\PrioritizeEnemyTargeting.cs" />
     <Compile Include="LegacyOverride\Patches\RundownSelectionCustomization.cs" />
     <Compile Include="LegacyOverride\Patches\DisableExpeditionFailPageArtifactDisplay.cs" />
@@ -101,7 +102,6 @@
     <Compile Include="LegacyOverride\FogBeacon\BigPickupFogBeaconSettingManager.cs" />
     <Compile Include="LegacyOverride\LegacyOverrideManagers.cs" />
     <Compile Include="LegacyOverride\ElevatorCargo\LevelElevatorCargo.cs" />
-    <Compile Include="LegacyOverride\EnemyTargeting\EnemyTargetingPrioritizer.cs" />
     <Compile Include="LegacyOverride\ResourceStations\ToolStation.cs" />
     <Compile Include="LegacyOverride\ResourceStations\MediStation.cs" />
     <Compile Include="LegacyOverride\ResourceStations\ResourceStation.cs" />

@@ -126,7 +126,7 @@ namespace LEGACY.LegacyOverride.EventScan
                     if (!Visual.active)
                     {
                         CoroutineManager.BlinkIn(Visual);
-                        Cylinder.SetActive(true);
+						if (def.DisplayCylinder) Cylinder.SetActive(true);
                         DisplayText?.gameObject.SetActive(true);
                     }
 
@@ -142,7 +142,7 @@ namespace LEGACY.LegacyOverride.EventScan
                     if (!Visual.active)
                     {
                         CoroutineManager.BlinkIn(Visual);
-                        Cylinder.SetActive(true);
+						if (def.DisplayCylinder) Cylinder.SetActive(true);
                         DisplayText?.gameObject.SetActive(true);
                     }
 

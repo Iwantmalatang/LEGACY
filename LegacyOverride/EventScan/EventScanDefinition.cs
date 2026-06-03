@@ -27,6 +27,8 @@ namespace LEGACY.LegacyOverride.EventScan
 
         public float Radius { get; set; } = 3.2f;
 
+        public bool DisplayCylinder { get; set; } = true;
+
         public ColorSetting ColorSetting { get; set; } = new();
 
         public LocalizedText DisplayText { get; set; } = null;
